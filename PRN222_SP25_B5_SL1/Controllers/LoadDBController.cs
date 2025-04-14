@@ -11,5 +11,42 @@ namespace PRN222_SP25_B5_SL1.Controllers
             ViewBag.st = st;
             return View();
         }
+
+        public IActionResult test()
+        {
+            string name = "Nguyen Van A";
+            int age = 20;
+            ViewBag.name = name;
+            ViewData["age"] = age;
+            //ViewBag.age = age;
+
+            //return View();
+
+            string add = "none";
+            return View((object)add);
+            //return View("test", add);
+        }
+
+        //[HttpPost]
+        //public IActionResult getData(IFormCollection f)
+        //{
+        //    ViewBag.fu = f["user"];
+        //    ViewBag.fp = f["pass"];
+        //    string u = Request.Form["user"];
+        //    string p = Request.Form["pass"];
+        //    ViewBag.u = u;
+        //    ViewBag.p = p;
+        //    return View();
+        //}
+
+
+
+        [HttpPost]
+        public IActionResult getData(string user, string pass)
+        {
+            ViewBag.u = user;
+            ViewBag.p = pass;
+            return View();
+        }
     }
 }

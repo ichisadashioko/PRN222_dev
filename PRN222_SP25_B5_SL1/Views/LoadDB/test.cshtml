@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model string
+
+<h1>data from controller</h1>
+<h2>ViewBag.name: @(ViewBag.name)</h2>
+<h2>ViewData["age"]: @ViewData["age"]</h2>
+<h2>ViewBag.age: @ViewBag.age</h2>
+<h2>@(ViewBag.age+5)</h2>
+<h2>object: @Model</h2>
+
+<form action="getData" method="post">
+    <input type="text" name="user" value="abc"/><br/>
+    <input type="password" name="pass" value="abc123"/><br />
+    <input type="submit" value="login"/>
+</form>
