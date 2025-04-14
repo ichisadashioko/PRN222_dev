@@ -42,10 +42,11 @@ namespace PRN222_SP25_B5_SL1.Controllers
 
 
         [HttpPost]
-        public IActionResult getData(string user, string pass)
+        public IActionResult getData(string user, string pass, int age)
         {
             ViewBag.u = user;
             ViewBag.p = pass;
+            ViewBag.a = age;
             return View();
         }
     }
