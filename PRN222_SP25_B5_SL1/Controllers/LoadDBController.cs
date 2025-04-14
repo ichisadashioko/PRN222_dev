@@ -5,6 +5,8 @@ namespace PRN222_SP25_B5_SL1.Controllers
 {
     public class LoadDBController : Controller
     {
+        [BindProperty]
+        public Department d { get; set; }
         public IActionResult Index()
         {
             var st = Prn222Sp25B5Context.Instance.Students.ToList<Student>();
@@ -22,9 +24,19 @@ namespace PRN222_SP25_B5_SL1.Controllers
 
             //return View();
 
-            string add = "none";
-            return View((object)add);
+            //string add = "none";
+            //return View((object)add);
+            //string add = "none";
+            return View();
             //return View("test", add);
+        }
+
+        [HttpPost]
+        public IActionResult getData(Department d)
+        {
+            ViewBag.u = d.Id;
+            ViewBag.p = d.Name;
+            return View();
         }
 
         //[HttpPost]
@@ -41,13 +53,13 @@ namespace PRN222_SP25_B5_SL1.Controllers
 
 
 
-        [HttpPost]
-        public IActionResult getData(string user, string pass, int age)
-        {
-            ViewBag.u = user;
-            ViewBag.p = pass;
-            ViewBag.a = age;
-            return View();
-        }
+        //[HttpPost]
+        //public IActionResult getData(string user, string pass, int age)
+        //{
+        //    ViewBag.u = user;
+        //    ViewBag.p = pass;
+        //    ViewBag.a = age;
+        //    return View();
+        //}
     }
 }

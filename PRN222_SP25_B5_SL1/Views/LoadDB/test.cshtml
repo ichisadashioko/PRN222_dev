@@ -3,8 +3,9 @@
 *@
 @{
 }
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-@model string
+@model PRN222_SP25_B5_SL1.Models_DB.Department;
 
 <h1>data from controller</h1>
 <h2>ViewBag.name: @(ViewBag.name)</h2>
@@ -13,9 +14,16 @@
 <h2>@(ViewBag.age+5)</h2>
 <h2>object: @Model</h2>
 
-<form action="getData" method="post">
-    <input type="text" name="user" value="abc" /><br />
-    <input type="text" name="age" value="20" /><br />
-    <input type="password" name="pass" value="abc123"/><br />
-    <input type="submit" value="login"/>
+@* <form action="getData" method="post"> *@
+@*     <input type="text" name="user" value="abc" /><br /> *@
+@*     <input type="text" name="age" value="20" /><br /> *@
+@*     <input type="password" name="pass" value="abc123"/><br /> *@
+@*     <input type="submit" value="login"/> *@
+@* </form> *@
+
+
+<form asp-action="getData" asp-controller="LoadDB" method="post">
+    <input type="text" asp-for="@Model.Id" /><br />
+    <input type="text" asp-for="@Model.Name" /><br />
+    <input type="submit" value="login" />
 </form>

@@ -9,5 +9,5 @@ public partial class Department
 
     public string Name { get; set; } = null!;
 
-    public virtual ICollection<Student> Students { get; set; } = new List<Student>();
+    public virtual ICollection<Student>? Students { get; set; } = new List<Student>();
 }
