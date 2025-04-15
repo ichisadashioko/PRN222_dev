@@ -7,14 +7,29 @@
 @{
     int idx = 1;
 }
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<a asp-action="Create" asp-controller="LoadDB" method="get">Add Student</a>
+
 <table>
     @foreach(var s in ViewBag.st){
         <tr>
             <td id=@($"tbl_{idx}_id")>@s.Id</td>
             <td id=@($"tbl_{idx}_name")>@s.Name</td>
-            <td id=@($"tbl_{idx}_dob")>@s.Dob</td>
-            <td id=@($"tbl_{idx}_gender")>@s.Gender</td>
-            <td id=@($"tbl_{idx}_depart_id")>@s.DepartId</td>
+            @* <td id=@($"tbl_{idx}_dob")>@s.Dob</td> *@
+            <td id=@($"tbl_{idx}_dob")>@s.new_Dob</td>
+            @* <td id=@($"tbl_{idx}_gender")>@s.Gender</td> *@
+            <td id=@($"tbl_{idx}_gender")>
+                <input type="checkbox" checked=@s.Gender disabled />
+                @(s.Gender ? "Male" : "Female")
+            </td>
+
+            <td id=@($"tbl_{idx}_gender")>
+                <input type="radio" name=@($"tbl_{idx}_gender") value="Male" checked="@(s.Gender)" disabled/>Male
+                <input type="radio" name=@($"tbl_{idx}_gender") value="Female" checked="@(!s.Gender)" disabled/>Female
+            </td>
+            <td id=@($"tbl_{idx}_depart_id")>@s.Depart.Name</td>
             <td id=@($"tbl_{idx}_gpa")>@s.Gpa</td>
         </tr>
         idx++;

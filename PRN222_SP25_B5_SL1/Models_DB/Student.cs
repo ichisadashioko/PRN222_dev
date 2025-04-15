@@ -16,6 +16,17 @@ public partial class Student
     public DateOnly? Dob { get; set; }
 
     public double Gpa { get; set; }
+    public string new_Dob
+    {
+        get
+        {
+            if (Dob == null)
+            {
+                return "";
+            }
 
+            return Dob.Value.ToString("dd-MM-yyyy");
+        }
+    }
     public virtual Department Depart { get; set; } = null!;
 }
