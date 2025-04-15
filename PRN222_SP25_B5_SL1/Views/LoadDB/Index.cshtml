@@ -3,12 +3,20 @@
 *@
 @{
 }
+
+@{
+    int idx = 1;
+}
 <table>
     @foreach(var s in ViewBag.st){
         <tr>
-            <td>@s.Id</td>
-            <td>@s.Name</td>
-            <td>@s.Dob</td>
+            <td id=@($"tbl_{idx}_id")>@s.Id</td>
+            <td id=@($"tbl_{idx}_name")>@s.Name</td>
+            <td id=@($"tbl_{idx}_dob")>@s.Dob</td>
+            <td id=@($"tbl_{idx}_gender")>@s.Gender</td>
+            <td id=@($"tbl_{idx}_depart_id")>@s.DepartId</td>
+            <td id=@($"tbl_{idx}_gpa")>@s.Gpa</td>
         </tr>
+        idx++;
     }
 </table>
