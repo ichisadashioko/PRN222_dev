@@ -32,12 +32,18 @@ namespace PRN222_SP25_B5_SL1.Controllers
         }
 
         [HttpPost]
-        public IActionResult getData(Department d)
+        public IActionResult getData()
         {
             ViewBag.u = d.Id;
             ViewBag.p = d.Name;
             return View();
         }
+        //public IActionResult getData(Department d)
+        //{
+        //    ViewBag.u = d.Id;
+        //    ViewBag.p = d.Name;
+        //    return View();
+        //}
 
         //[HttpPost]
         //public IActionResult getData(IFormCollection f)
