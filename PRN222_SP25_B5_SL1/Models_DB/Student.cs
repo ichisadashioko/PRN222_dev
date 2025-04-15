@@ -28,5 +28,5 @@ public partial class Student
             return Dob.Value.ToString("dd-MM-yyyy");
         }
     }
-    public virtual Department Depart { get; set; } = null!;
+    public virtual Department? Depart { get; set; } = null!;
 }

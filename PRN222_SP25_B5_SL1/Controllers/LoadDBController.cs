@@ -41,23 +41,55 @@ namespace PRN222_SP25_B5_SL1.Controllers
                 ViewBag.dept = Prn222Sp25B5Context.Instance.Departments.ToList<Department>();
                 return View(st);
             }
-            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            Student st = Prn222Sp25B5Context.Instance.Students.Find(id);
+            if (st == null)
+            {
+                return Redirect("Index");
+            }
+            else
+            {
+                //ViewBag.st = st;
+                ViewBag.dept = Prn222Sp25B5Context.Instance.Departments.ToList<Department>();
+                return View(st);
+            }
         }
 
 
+        [HttpPost]
+        public IActionResult Delete(Student student)
+        {
+            Student x = Prn222Sp25B5Context.Instance.Students.Find(student.Id);
+            if (x != null)
+            {
+                Prn222Sp25B5Context.Instance.Students.Remove(x);
+                Prn222Sp25B5Context.Instance.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
 
         [HttpPost]
         public IActionResult Edit(Student student)
         {
-            Student st = Prn222Sp25B5Context.Instance.Students.Find(student.Id);
-            if (st != null)
+            Student x = Prn222Sp25B5Context.Instance.Students.Find(student.Id);
+            if (x != null)
             {
-                st.Name = student.Name;
-                st.Gender = student.Gender;
-                st.DepartId = student.DepartId;
-                st.Dob = student.Dob;
-                st.Gpa = student.Gpa;
-                Prn222Sp25B5Context.Instance.Students.Update(st);
+                Prn222Sp25B5Context.Instance.Attach(x).State = EntityState.Detached;
+                Prn222Sp25B5Context.Instance.Attach(student).State = EntityState.Modified;
+
+                // TODO delete
+
+                //st.Name = student.Name;
+                //st.Gender = student.Gender;
+                //st.DepartId = student.DepartId;
+                //st.Dob = student.Dob;
+                //st.Gpa = student.Gpa;
+                //Prn222Sp25B5Context.Instance.Students.Update(st);
                 Prn222Sp25B5Context.Instance.SaveChanges();
             }
             return RedirectToAction("Index");
