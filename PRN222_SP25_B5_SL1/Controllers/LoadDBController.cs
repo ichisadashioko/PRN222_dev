@@ -17,12 +17,50 @@ namespace PRN222_SP25_B5_SL1.Controllers
         public IActionResult Create(Student st)
         {
             var x = Prn222Sp25B5Context.Instance.Students.Find(st.Id);
-            if(x == null)
+            if (x == null)
             {
                 Prn222Sp25B5Context.Instance.Students.Add(st);
                 Prn222Sp25B5Context.Instance.SaveChanges();
             }
             return Redirect("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            //ViewBag.Id = Request.Form["id"];
+            //ViewBag.Id = id;
+            Student st = Prn222Sp25B5Context.Instance.Students.Find(id);
+            if (st == null)
+            {
+                return Redirect("Index");
+            }
+            else
+            {
+                //ViewBag.st = st;
+                ViewBag.dept = Prn222Sp25B5Context.Instance.Departments.ToList<Department>();
+                return View(st);
+            }
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public IActionResult Edit(Student student)
+        {
+            Student st = Prn222Sp25B5Context.Instance.Students.Find(student.Id);
+            if (st != null)
+            {
+                st.Name = student.Name;
+                st.Gender = student.Gender;
+                st.DepartId = student.DepartId;
+                st.Dob = student.Dob;
+                st.Gpa = student.Gpa;
+                Prn222Sp25B5Context.Instance.Students.Update(st);
+                Prn222Sp25B5Context.Instance.SaveChanges();
+            }
+            return RedirectToAction("Index");
         }
 
         //[HttpPost]
