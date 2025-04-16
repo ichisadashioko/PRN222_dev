@@ -1,10 +1,12 @@
 using System.Net;
 using System.Net.Sockets;
+using PRN222_SP25_B5_SL1.Models_DB;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<Prn222Sp25B5Context>();
 
 var app = builder.Build();
 
