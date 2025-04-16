@@ -1,0 +1,7 @@
+h1 {
+    color: #0f0;
+}
+
+.student_row > td {
+    border: 1px solid #f00;
+}
