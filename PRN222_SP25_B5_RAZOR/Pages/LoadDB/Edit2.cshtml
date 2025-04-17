@@ -1,0 +1,33 @@
+﻿@page
+@model PRN222_SP25_B5_RAZOR.Pages.LoadDB.Edit2Model
+@{
+	var dob_str = ViewBag.std.Dob.ToString("yyyy-MM-dd");
+}
+
+<form method="post">
+	ID: <input type="text" name="id" value="@ViewBag.std.Id" /><br />
+	Name: <input type="text" name="name" value="@ViewBag.std.Name" /><br />
+	Gender: <input type="checkbox" name="gender" value="@ViewBag.std.Gender" /><br />
+	Department:
+	@* <select value="@ViewBag.std.DepartId"> *@
+	@* 	@foreach (Department department in ViewBag.ds) *@
+	@* 	{ *@
+	@* 		<option value="@department.Id">@department.Name</option> *@
+	@* 	} *@
+	@* </select><br /> *@
+	<div>
+		@foreach (Department department in ViewBag.ds)
+		{
+			<input name="depart_id" @((ViewBag.std.DepartId == department.Id) ? "checked" : "") type="radio" value="@department.Id" />
+
+			@department.Name
+
+			<br />
+		}
+
+	</div>
+	DOB: <input name="dob" value="@dob_str" type="date" /><br />
+	GPA: <input name="gpa" type="number" value="@ViewBag.std.Gpa" /><br />
+	<input type="submit" value="edit" />
+
+</form>
