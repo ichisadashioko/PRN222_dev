@@ -1,0 +1,97 @@
+﻿@page
+@model PRN222_SP25_B5_RAZOR.Pages.LoadDB.FilterMultipleItemsModel
+
+@{
+	ViewData["Title"] = "FilterMultipleItems";
+	if (ViewBag.SelectedDepartments == null)
+	{
+		ViewBag.SelectedDepartments = new List<string>();
+	}
+}
+
+<h1>FilterMultipleItems</h1>
+
+<p>
+	<a asp-page="Create">Create New</a>
+</p>
+
+<div>
+	@foreach (var s in ViewBag.SelectedDepartments)
+	{
+		<div>- @(s)</div>
+	}
+</div>
+
+
+<form method="post">
+	Filter by departments:
+	@foreach (Department d in Model.Departments)
+	{
+		<input type="checkbox" value=@d.Id name="SelectedDepartments" @((ViewBag.SelectedDepartments).Contains(d.Id) ? "checked" : "") />
+		@* <input asp-for=@Model.SelectedDepartments type="checkbox" value=@d.Id name="selected_depart" /> *@
+
+		@d.Name
+		@* <p>- @((ViewBag.SelectedDepartments).Contains(d.Id) ? "true" : "false")</p> *@
+
+		<br />
+	}
+
+	<input id="depart_filter_submit" type="submit" value="filter" />
+</form>
+
+<script>
+	document.getElementById('depart_filter').addEventListener('change', function(){
+		document.getElementById('depart_filter_submit').click();
+	})
+</script>
+
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Student[0].Name)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Student[0].Gender)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Student[0].Dob)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Student[0].Gpa)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Student[0].Depart)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.Student)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Gender)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Dob)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Gpa)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Depart.Id)
+				</td>
+				<td>
+					<a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+					<a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+					<a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
