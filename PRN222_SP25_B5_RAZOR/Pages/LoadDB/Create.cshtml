@@ -1,0 +1,20 @@
+﻿@page
+@model PRN222_SP25_B5_RAZOR.Pages.LoadDB.CreateModel
+@{
+}
+
+<form method="post">
+	ID: <input asp-for="@Model.std.Id" /><br />
+	Name: <input asp-for="@Model.std.Name" /><br />
+	Gender: <input asp-for="@Model.std.Gender" /><br />
+	Department: <select asp-for="@Model.std.DepartId">
+		@foreach (Department department in ViewBag.ds)
+		{
+			<option value="@department.Id">@department.Name</option>
+		}
+	</select><br />
+	DOB: <input asp-for="@Model.std.Dob" type="date" /><br />
+	GPA: <input asp-for="@Model.std.Gpa" /><br />
+	<input type="submit" value="add" />
+
+</form>

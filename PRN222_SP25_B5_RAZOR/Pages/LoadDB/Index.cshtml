@@ -4,8 +4,13 @@
 }
 
 <h1>welcome</h1>
+
+<a asp-page="Create" class="btn btn-primary">
+	create new student
+</a>
+
 <table>
-	@foreach (PRN222_SP25_B5_RAZOR.Models.Student student in ViewBag.st)
+	@foreach (Student student in ViewBag.st)
 	{
 		<tr class="student_row">
 			<td>@student.Id</td>
@@ -28,16 +33,15 @@
 			<td>@student.Depart.Name</td>
 			<td>
 				<select>
-					@foreach (PRN222_SP25_B5_RAZOR.Models.Department department in ViewBag.ds)
+					@foreach (Department department in ViewBag.ds)
 					{
 						<option value="@department.Id" selected=@(student.DepartId == department.Id)>@department.Name</option>
-
 					}
 				</select>
 			</td>
 
 			<td>
-				@foreach (PRN222_SP25_B5_RAZOR.Models.Department department in ViewBag.ds)
+				@foreach (Department department in ViewBag.ds)
 				{
 					<input type="radio" name="@($"radio_depart_id{student.Id}")" value="@department.Id" checked=@(student.DepartId == department.Id) />
 
@@ -48,6 +52,16 @@
 				}
 			</td>
 			<td>@student.Gpa</td>
+			<td>
+				<a asp-page="Edit" asp-route-id="@student.Id" class="btn btn-primary">
+					edit
+				</a>
+			</td>
+			<td>
+				<a asp-page="Delete" asp-route-id="@student.Id" class="btn btn-primary">
+					Delete
+				</a>
+			</td>
 		</tr>
 	}
 </table>

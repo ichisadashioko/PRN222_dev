@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using PRN222_SP25_B5_RAZOR.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using PRN222_SP25_B5_RAZOR.Models;
 
 namespace PRN222_SP25_B5_RAZOR.Pages.LoadDB
 {

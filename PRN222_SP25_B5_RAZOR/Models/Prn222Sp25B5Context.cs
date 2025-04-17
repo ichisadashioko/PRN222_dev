@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PRN222_SP25_B5_RAZOR.Models;
 
 public partial class Prn222Sp25B5Context : DbContext
 {

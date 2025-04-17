@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PRN222_SP25_B5_RAZOR.Models;
 
 public partial class Department
 {
