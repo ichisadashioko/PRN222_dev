@@ -8,12 +8,24 @@
 	ID: <input asp-for="@Model.std.Id" /><br />
 	Name: <input asp-for="@Model.std.Name" /><br />
 	Gender: <input asp-for="@Model.std.Gender" /><br />
-	Department: <select asp-for="@Model.std.DepartId">
+	Department:
+	@* <select asp-for="@Model.std.DepartId"> *@
+	@* 	@foreach (Department department in ViewBag.ds) *@
+	@* 	{ *@
+	@* 		<option value="@department.Id">@department.Name</option> *@
+	@* 	} *@
+	@* </select><br /> *@
+	<div>
 		@foreach (Department department in ViewBag.ds)
 		{
-			<option value="@department.Id">@department.Name</option>
+			<input type="radio" value="@department.Id" asp-for="@Model.std.DepartId" />
+
+			@department.Name
+
+			<br />
 		}
-	</select><br />
+
+	</div>
 	DOB: <input asp-for="@Model.std.Dob" type="date" /><br />
 	GPA: <input asp-for="@Model.std.Gpa" /><br />
 	<input type="submit" value="edit" />
