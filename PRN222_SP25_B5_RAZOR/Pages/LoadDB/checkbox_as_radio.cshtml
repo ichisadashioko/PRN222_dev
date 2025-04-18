@@ -1,0 +1,48 @@
+﻿@page
+@model PRN222_SP25_B5_RAZOR.Pages.LoadDB.checkbox_as_radioModel
+@{
+}
+
+<form method="post">
+	ID: <input asp-for="@Model.std.Id" /><br />
+	Name: <input asp-for="@Model.std.Name" /><br />
+	Gender: <input asp-for="@Model.std.Gender" /><br />
+	Department:
+	@foreach (Department department in ViewBag.ds)
+	{
+		<input class="checkbox_as_radio_departments"
+			   type="checkbox"
+			   asp-for="@Model.std.DepartId"
+			   value="@department.Id" />
+
+		@department.Name
+
+		<br />
+	}<br />
+	DOB: <input asp-for="@Model.std.Dob" type="date" /><br />
+	GPA: <input asp-for="@Model.std.Gpa" /><br />
+	<input type="submit" value="add" />
+
+</form>
+
+
+<script>
+	document.addEventListener('load', function(){
+		console.log('adding events');
+		let el_arr = document.getElementsByClassName('checkbox_as_radio_departments');
+		for(let i = 0; i < el_arr; i++){
+			let current_el = el_arr[i];
+			console.log(current_el);
+			current_el.addEventListener('click', function(evt){
+				console.log(current_el);
+				for(let j = 0; j < el_arr.length; i++){
+					if(el_arr[j] !== current_el){
+						// el_arr[i].removeAttribute('checked');
+						el_arr[j].checked = false;
+						console.log(el_arr[j]);
+					}
+				}
+			});
+		}
+	});
+</script>
